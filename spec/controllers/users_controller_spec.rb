@@ -6,11 +6,12 @@ RSpec.describe UsersController, type: :controller do
     {email: 'test@gmail.com', password: 'password', password_confirmation: 'password'}
   }
 
+  login_user
+
   describe "GET #index" do
     it "assigns all users as @users" do
-      user = User.create! valid_attributes
       get :index, {}
-      expect(assigns(:users)).to eq([user])
+      expect(assigns(:users).to_a).to eq([@user])
     end
   end
 
