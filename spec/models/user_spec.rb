@@ -6,4 +6,5 @@ RSpec.describe User, type: :model do
   subject { user }
 
   it { should respond_to(:posts) }
+  it { should respond_to(:email) }
 end
