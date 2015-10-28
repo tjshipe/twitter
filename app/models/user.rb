@@ -11,4 +11,16 @@ class User < ActiveRecord::Base
 
   has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
+
+  def following?(user)
+    following_relationships.find_by(followed_id: user.id)
+  end
+
+  def follow!(user)
+    following_relationships.create!(followed_id: user.id)
+  end
+
+  def unfollow!(user)
+    following_relationships.find_by(followed_id: user.id).destroy
+  end
 end
