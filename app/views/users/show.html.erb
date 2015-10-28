@@ -12,7 +12,11 @@
   <% end %>
 <% end %>
 
-<% @posts.each do |post| %>
-  <%= render '/posts/post', post: post %>
+<% if @posts.length > 0 %>
+  <% @posts.each do |post| %>
+    <%= render '/posts/post', post: post %>
+  <% end %>
+<% else %>
+  <p><%= @user.email %> doesn't have any posts.</p>
 <% end %>
 

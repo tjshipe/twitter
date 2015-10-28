@@ -2,21 +2,25 @@
 
 <h1>My Feed</h1>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <p><%= post.body %></p>
-      <span>
-        Posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %>.
-      </span>
-      <% if current_user?(post.user) %>
-        <%= link_to "Delete", post, method: :delete,
-                                         title: post.body %>
-      <% end %>
-    </li>
+  <% if @posts.length > 0 %>
+    <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <p><%= post.body %></p>
+        <span>
+          Posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %>.
+        </span>
+        <% if current_user?(post.user) %>
+          <%= link_to "Delete", post, method: :delete,
+                                           title: post.body %>
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  <% else %>
+    Your feed is empty. Click <%= link_to 'here', users_path %> to follow some users.
   <% end %>
-</ul>
 
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<p>
+  <%= link_to 'Create A New Post', new_post_path %>
+</p>
