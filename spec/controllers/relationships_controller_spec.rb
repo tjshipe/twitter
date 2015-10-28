@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe RelationshipController, type: :controller do
+RSpec.describe RelationshipsController, type: :controller do
 
 end
