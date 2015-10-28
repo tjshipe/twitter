@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= link_to 'View', user %></td>
+        <td>
+          <% if current_user.following?(user) %>
+            <%= render 'unfollow', user: user %>
+          <% else %>
+            <%= render 'follow', user: user  %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
