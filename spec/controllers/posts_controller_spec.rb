@@ -21,26 +21,10 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    describe "GET #show" do
-      it "assigns the requested post as @post" do
-        post = Post.create! valid_attributes
-        get :show, {:id => post.to_param}
-        expect(assigns(:post)).to eq(post)
-      end
-    end
-
     describe "GET #new" do
       it "assigns a new post as @post" do
         get :new, {}
         expect(assigns(:post)).to be_a_new(Post)
-      end
-    end
-
-    describe "GET #edit" do
-      it "assigns the requested post as @post" do
-        post = Post.create! valid_attributes
-        get :edit, {:id => post.to_param}
-        expect(assigns(:post)).to eq(post)
       end
     end
 
@@ -58,9 +42,9 @@ RSpec.describe PostsController, type: :controller do
           expect(assigns(:post)).to be_persisted
         end
 
-        it "redirects to the created post" do
+        it "redirects to the post index" do
           post :create, {:post => valid_attributes}
-          expect(response).to redirect_to(Post.last)
+          expect(response).to redirect_to(action: :index, notice: 'Post was successfully created.')
         end
       end
 
@@ -73,47 +57,6 @@ RSpec.describe PostsController, type: :controller do
         it "re-renders the 'new' template" do
           post :create, {:post => invalid_attributes}
           expect(response).to render_template("new")
-        end
-      end
-    end
-
-    describe "PUT #update" do
-      context "with valid params" do
-        let(:new_attributes) {
-          {body: "This is a different tweet."}
-        }
-
-        it "updates the requested post" do
-          post = Post.create! valid_attributes
-          put :update, {:id => post.to_param, :post => new_attributes}
-          post.reload
-          expect(post.body).to eql new_attributes[:body]
-        end
-
-        it "assigns the requested post as @post" do
-          post = Post.create! valid_attributes
-          put :update, {:id => post.to_param, :post => valid_attributes}
-          expect(assigns(:post)).to eq(post)
-        end
-
-        it "redirects to the post" do
-          post = Post.create! valid_attributes
-          put :update, {:id => post.to_param, :post => valid_attributes}
-          expect(response).to redirect_to(post)
-        end
-      end
-
-      context "with invalid params" do
-        it "assigns the post as @post" do
-          post = Post.create! valid_attributes
-          put :update, {:id => post.to_param, :post => invalid_attributes}
-          expect(assigns(:post)).to eq(post)
-        end
-
-        it "re-renders the 'edit' template" do
-          post = Post.create! valid_attributes
-          put :update, {:id => post.to_param, :post => invalid_attributes}
-          expect(response).to render_template("edit")
         end
       end
     end
