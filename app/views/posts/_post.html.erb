@@ -1,0 +1,10 @@
+<li>
+  <p><%= post.body %></p>
+  <span>
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+  <% if current_user?(post.user) %>
+    <%= link_to "Delete", post, method: :delete,
+                                     title: post.body %>
+  <% end %>
+</li>

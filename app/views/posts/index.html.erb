@@ -1,28 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<h1>All Posts</h1>
+<h1>My Feed</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Body</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user.email %></td>
-        <td><%= post.body %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <p><%= post.body %></p>
+      <span>
+        Posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %>.
+      </span>
+      <% if current_user?(post.user) %>
+        <%= link_to "Delete", post, method: :delete,
+                                         title: post.body %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
 
 <br>
 
