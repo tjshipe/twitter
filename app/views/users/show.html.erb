@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<h1>
+  <%= @user.email %>'s Page
+</h1>
+
 <% unless current_user?(@user) %>
   <% if current_user.following?(@user) %>
     <%= render 'unfollow', user: @user %>
@@ -11,6 +11,8 @@
     <%= render 'follow', user: @user %>
   <% end %>
 <% end %>
+
+<h3>Posts:</h3>
 
 <% if @posts.length > 0 %>
   <% @posts.each do |post| %>
