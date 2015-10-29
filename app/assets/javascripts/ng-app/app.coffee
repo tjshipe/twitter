@@ -6,7 +6,7 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular', '
     $rootScope.$on 'devise:logout', (event, oldCurrentUser) ->
       $state.go('home', {reload: true})
   ])
-  .config ($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider, AuthInterceptProvider) ->
+  .config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$locationProvider', 'AuthInterceptProvider', ($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider, AuthInterceptProvider) ->
     AuthInterceptProvider.interceptAuth(true)
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
     $urlRouterProvider.when "/", "feed"
@@ -25,6 +25,7 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular', '
         currentUser: ['Auth', (Auth) ->
           Auth.currentUser()
         ]
+  ])
 
 
 
