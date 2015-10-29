@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :relationship do
-    follower_id 1
-    followed_id 1
+    follower { FactoryGirl.create(:user) }
+    followed { FactoryGirl.create(:user) }
   end
 end
