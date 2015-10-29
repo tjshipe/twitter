@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.feed(current_user.followed_user_ids << current_user.id)
+    @posts = Post.includes(:user).feed(current_user.followed_user_ids << current_user.id)
   end
 
   def new
