@@ -9,7 +9,7 @@ class FavoritesController < ApplicationController
     if current_user.favorites.create(favorite_params)
       redirect_to posts_url, notice: 'Post has been favorited'
     else
-      redirect_to posts_url, alert: 'Something went wrong...*sad panda*'
+      redirect_to posts_url, alert: 'Not able to favorite this post'
     end
   end
   
