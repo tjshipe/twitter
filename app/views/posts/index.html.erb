@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>My Feed</h1>
-
+<% if current_user.followed_users.count > 0 && @posts.length > 0 %>
+  You aren't following any users. Click <%= link_to 'here', users_path %> to view the user list.
+<% end %>
+<br>
 <% if @posts.length > 0 %>
   <ul>
   <% @posts.each do |post| %>
