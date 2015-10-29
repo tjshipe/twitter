@@ -6,7 +6,7 @@ The master branch is on heroku at: [http://thawing-depths-1768.herokuapp.com](ht
 
 The angular branch is a limited twitter clone using rails and angular for logging in, creating tweets, and showing the feed.
 
-The client side app is on heroku at: [http://tranquil-harbor-5151.herokuapp.com/](http://tranquil-harbor-5151.herokuapp.com/)
+The angular/rails app is on heroku at: [http://tranquil-harbor-5151.herokuapp.com/](http://tranquil-harbor-5151.herokuapp.com/)
 You can use the login information at the bottom for both apps on heroku.
 
 ## Installation
