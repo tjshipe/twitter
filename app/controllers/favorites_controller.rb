@@ -14,8 +14,11 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-    current_user.favorites.find_by(favorite_params).destroy
-    redirect_to posts_url, notice: 'Post has been removed from favorites'
+    if Favorite.find(params[:id]).destroy
+      redirect_to posts_url, notice: 'Post has been removed from favorites'
+    else
+      redirect_to posts_url, notice: 'Not able to remove favorite'
+    end
   end
   
   private
