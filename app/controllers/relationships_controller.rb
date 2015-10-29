@@ -13,7 +13,7 @@ class RelationshipsController < ApplicationController
   def destroy
     if @user = Relationship.find(params[:id]).followed
       current_user.unfollow!(@user)
-      redirect_to users_path
+      redirect_to users_path, notice: "You are no longer following #{@user.email}"
     else
       redirect_to users_path, notice: 'Not able to unfollow.'
     end
