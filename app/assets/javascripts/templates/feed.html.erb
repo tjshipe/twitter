@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>The Feed</h1>
+    <form>
+      <input type="text" ng-model="post.body" placeholder="Type tweet here">
+      <button type="submit" ng-click="createPost()">Create Post</button
+    </form>
+  <ul>
+    <li ng-repeat="post in posts">
+      <p>{{post.body}}</p>
+      Posted by {{post.user.email}} on {{post.created_at | date:mediumDate}}
+    </li>
+  </ul>
+</div>

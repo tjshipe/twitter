@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:index, :create, :destroy]
 
-  root 'posts#index'
+  root 'application#index'
+  get '*path' => 'application#index'
 end

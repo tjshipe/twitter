@@ -1,0 +1,20 @@
+{
+  "lib": {
+    "name": "bower-rails generated lib assets",
+    "dependencies": {
+      "angular-ui-router": "latest",
+      "restangular": "latest",
+      "angular-devise": "latest",
+      "bootstrap-sass-official": "latest"
+    }
+  },
+  "vendor": {
+    "name": "bower-rails generated vendor assets",
+    "dependencies": {
+      "angular-ui-router": "latest",
+      "restangular": "latest",
+      "angular-devise": "latest",
+      "bootstrap-sass-official": "latest"
+    }
+  }
+}
