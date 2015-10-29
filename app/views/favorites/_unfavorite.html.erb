@@ -1,0 +1,4 @@
+<%= form_for(current_user.favorites.find_by(post_id: post.id), method: :delete) do |f| %>
+  <%= f.hidden_field :post_id %>
+  <%= f.submit "Unfavorite" %>
+<% end %>

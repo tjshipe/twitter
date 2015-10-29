@@ -8,11 +8,17 @@
     <li>
       <p><%= post.body %></p>
       <span>
-        Posted <%= time_ago_in_words(post.created_at) %> ago by <%= link_to post.user.email, user_path(post.user) %>.
+        Posted by <%= link_to post.user.email, user_path(post.user) %> <%= time_ago_in_words(post.created_at) %> ago.
       </span>
       <% if current_user?(post.user) %>
         <%= link_to "Delete", post, method: :delete,
-                                         title: post.body %>
+                                         title: post.body, data: {confirm: 'Are you sure you want to delete this post?'} %>
+      <% else %>
+        <% if current_user.favorite_posts.include?(post) %>
+          <%= render '/favorites/unfavorite', post: post %>
+        <% else %>
+          <%= render '/favorites/favorite', post: post  %>
+        <% end %>
       <% end %>
     </li>
   <% end %>

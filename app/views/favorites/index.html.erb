@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Favorites</h1>
+
+<% if @favorites.length > 0 %>
+  <ul>
+  <% @favorites.each do |favorite| %>
+    <li>
+      <p><%= favorite.post.body %></p>
+      <span>
+        Posted by <%= link_to favorite.post.user.email, user_path(favorite.post.user) %> <%= time_ago_in_words(favorite.post.created_at) %> ago.
+      </span>
+      <br>
+      <span>
+        Favorited on <%= favorite.created_at.strftime("%B %d, %Y") %>
+      </span>
+      <% if current_user.favorite_posts.include?(favorite.post) %>
+        <%= render '/favorites/unfavorite', post: favorite.post %>
+      <% else %>
+        <%= render '/favorites/favorite', post: favorite.post  %>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  You don't have any favorites. Click <%= link_to 'here', root_path %> to view your feed and favorite some posts.
+<% end %>
