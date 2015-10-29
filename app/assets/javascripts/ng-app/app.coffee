@@ -2,6 +2,9 @@ angular.module('myApp', ['ngAnimate', 'ui.router', 'templates', 'restangular', '
   .run(['$rootScope', '$state', ($rootScope, $state) ->
     $rootScope.$on "devise:unauthorized", (event, xhr, deferred) ->
       $state.go('home')
+
+    $rootScope.$on 'devise:logout', (event, oldCurrentUser) ->
+      $state.go('home', {reload: true})
   ])
   .config ($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider, AuthInterceptProvider) ->
     AuthInterceptProvider.interceptAuth(true)
