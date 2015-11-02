@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
+  has_many :messages, class_name: "Message", foreign_key: 'receiver_id'
 
   has_many :favorites
   has_many :favorite_posts, through: :favorites, source: :post

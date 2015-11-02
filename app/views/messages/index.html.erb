@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Inbox</h1>
+
+<% if @messages.length > 0 %>
+  <ul>
+  <% @messages.each do |message| %>
+    <li>
+      <p><%= message.body %></p>
+      <span>
+        Sent from <%= link_to message.sender.email, user_path(message.sender) %> <%= time_ago_in_words(message.created_at) %> ago.
+      </span>
+      <%= link_to "Delete", message, method: :delete,
+                                         title: message.body, data: {confirm: 'Are you sure you want to delete this message?'} %>
+      <br>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  You don't have any messages.
+<% end %>

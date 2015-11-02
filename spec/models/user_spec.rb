@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   subject { user }
 
   it { should respond_to(:posts) }
+  it { should respond_to(:messages) }
   it { should respond_to(:email) }
   it { should respond_to(:followers) }
   it { should respond_to(:followed_users) }

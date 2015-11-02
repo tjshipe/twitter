@@ -4,6 +4,10 @@
   <%= @user.email %>'s Page
 </h1>
 
+<p>
+  <%= link_to "Send #{@user.email} a direct message", new_user_message_path(@user) %>
+</p>
+
 <% unless current_user?(@user) %>
   <% if current_user.following?(@user) %>
     <%= render 'unfollow', user: @user %>
