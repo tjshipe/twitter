@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:user).feed(current_user.followed_user_ids << current_user.id)
+    @posts = @posts.search(params[:query]) if params[:query]
   end
 
   def new

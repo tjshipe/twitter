@@ -14,10 +14,20 @@ RSpec.describe PostsController, type: :controller do
     login_user
 
     describe "GET #index" do
-      it "assigns all posts as @posts" do
-        post = Post.create! valid_attributes
-        get :index, {}
-        expect(assigns(:posts)).to eq([post])
+      context "with an existing post" do
+        let!(:post) { FactoryGirl.create(:post, user: @user) }
+        let!(:post2) { FactoryGirl.create(:post, user: @user, body: "Not in search") }
+        
+        it "assigns all posts as @posts" do
+          get :index, {}
+          expect(assigns(:posts)).to include(post)
+          expect(assigns(:posts)).to include(post2)
+        end
+
+        it "pass in search query" do
+          get :index, {query: "This is a tweet"}
+          expect(assigns(:posts)).to eq([post])
+        end
       end
     end
 

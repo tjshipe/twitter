@@ -4,4 +4,5 @@ class Post < ActiveRecord::Base
   validates :body, presence: true, length: { maximum: 140 }
 
   scope :feed, -> (ids) { where(user_id: ids).order("created_at DESC") } 
+  scope :search, -> (term) { where("body LIKE ?", "%#{term}%") }
 end
